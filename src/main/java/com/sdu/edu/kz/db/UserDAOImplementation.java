@@ -38,7 +38,7 @@ public class UserDAOImplementation implements UserDAO {
         try {
             // Initialize connection if it's null or closed
             if (connection == null || connection.isClosed()) {
-                connection = ConnectionDBProvider.setConnection();
+                connection = ConnectionDBProvider.getConnection();
             }
 
             try (PreparedStatement statement = connection.prepareStatement("SELECT * FROM users WHERE userName = ? AND password = ?")) {

@@ -11,7 +11,7 @@
     <title>SDP - Registration Page</title>
 </head>
 <body>
-<form action="loginreg" method="post">
+<form action="register" method="post">
     <table style="background-color: #585893; padding: 20px">
         <tr>
             <td>Registration!</td>
