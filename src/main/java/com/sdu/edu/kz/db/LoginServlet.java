@@ -1,6 +1,5 @@
 package com.sdu.edu.kz.db;
 
-import java.sql.Connection;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -8,6 +7,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
@@ -18,29 +18,35 @@ public class LoginServlet extends HttpServlet {
         String username = request.getParameter("userName");
         String password = request.getParameter("password");
 
+        if (authenticate(username, password)) {
+            request.getSession().setAttribute("username", username);
+            response.sendRedirect("/main");
+        } else {
+            request.setAttribute("message", "Invalid username or password.");
+            request.getRequestDispatcher("/auth/login.jsp").forward(request, response);
+        }
+    }
+
+    private boolean authenticate(String username, String password) {
+        boolean isAuthenticated = false;
+
         try (Connection connection = ConnectionDBProvider.getConnection()) {
-            String sql = "SELECT * FROM users WHERE username = ? AND password = ?";
+            String sql = "SELECT password FROM users WHERE username = ?";
             try (PreparedStatement statement = connection.prepareStatement(sql)) {
                 statement.setString(1, username);
-                statement.setString(2, password); // In a real application, compare hashed passwords
                 ResultSet resultSet = statement.executeQuery();
 
                 if (resultSet.next()) {
-                    // User exists, handle login success
-                    request.setAttribute("successMessage", "Login Successful!");
-                    // Redirect to a welcome or user profile page
-                    request.getRequestDispatcher("/main.jsp").forward(request, response); // Replace with your welcome page
-                } else {
-                    // User does not exist, handle login failure
-                    request.setAttribute("message", "Invalid username or password.");
-                    request.getRequestDispatcher("/auth/login.jsp").forward(request, response);
+                    String storedPassword = resultSet.getString("password");
+                    // Compare the stored password with the provided one
+                    isAuthenticated = password.equals(storedPassword); // Simple comparison
+                    // For real applications, use hashed passwords and compare accordingly.
                 }
             }
         } catch (Exception e) {
-            // Handle exceptions
-            e.printStackTrace();
-            request.setAttribute("message", "Login failed: " + e.getMessage());
-            request.getRequestDispatcher("/auth/login.jsp").forward(request, response);
+            e.printStackTrace(); // Log this exception
         }
+
+        return isAuthenticated;
     }
 }

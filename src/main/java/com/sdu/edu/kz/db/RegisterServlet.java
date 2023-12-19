@@ -9,6 +9,8 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 @WebServlet("/auth/register")
 public class RegisterServlet extends HttpServlet {
@@ -27,6 +29,13 @@ public class RegisterServlet extends HttpServlet {
         }
 
         try (Connection connection = ConnectionDBProvider.getConnection()) {
+            // Check if username already exists
+            if (usernameExists(username, connection)) {
+                request.setAttribute("error", "Username already exists.");
+                request.getRequestDispatcher("registration.jsp").forward(request, response);
+                return;
+            }
+
             String sql = "INSERT INTO users (username, name, password) VALUES (?, ?, ?)";
             try (PreparedStatement statement = connection.prepareStatement(sql)) {
                 statement.setString(1, username);
@@ -34,15 +43,25 @@ public class RegisterServlet extends HttpServlet {
                 statement.setString(3, password); // Hash the password in a real application
                 statement.executeUpdate();
 
-                // Redirect to login page or show success message
                 request.setAttribute("message", "Registration successful! Please login.");
                 request.getRequestDispatcher("login.jsp").forward(request, response);
             }
         } catch (Exception e) {
-            // Handle exceptions
             e.printStackTrace();
             request.setAttribute("error", "Registration failed: " + e.getMessage());
             request.getRequestDispatcher("registration.jsp").forward(request, response);
         }
+    }
+
+    private boolean usernameExists(String username, Connection connection) throws SQLException {
+        String sql = "SELECT COUNT(*) FROM users WHERE username = ?";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, username);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                return resultSet.getInt(1) > 0;
+            }
+        }
+        return false;
     }
 }

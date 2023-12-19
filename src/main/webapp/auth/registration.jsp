@@ -8,37 +8,51 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>SDP - Registration Page</title>
+    <title>Registration</title>
+    <!-- Add any required CSS or JS files -->
 </head>
 <body>
+
+<h2>Register</h2>
+
+<%-- Display error message if it exists --%>
+<% if (request.getAttribute("error") != null) { %>
+<div style="color: red;">
+    <%= request.getAttribute("error") %>
+</div>
+<% } %>
+
+<%-- Display success message if it exists --%>
+<% if (request.getAttribute("message") != null) { %>
+<div style="color: green;">
+    <%= request.getAttribute("message") %>
+</div>
+<% } %>
+
 <form action="register" method="post">
-    <table style="background-color: #585893; padding: 20px">
-        <tr>
-            <td>Registration!</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>Username: </td>
-            <td><input type="text" name="userName"></td>
-        </tr>
-        <tr>
-            <td>Name: </td>
-            <td><input type="text" name="name"></td>
-        </tr>
-        <tr>
-            <td>Password: </td>
-            <td><input type="password" name="password"></td>
-        </tr>
-        <tr>
-            <td>Re-Type Password: </td>
-            <td><input type="password" name="reTypePassword"></td>
-        </tr>
-        <tr>
-            <td><input type="submit" name="submit" value="registration"></td>
-            <td><a href="login.jsp" style="text-decoration: none; color: azure">Login</a></td>
-        </tr>
-    </table>
+    <div>
+        <label for="userName">Username:</label>
+        <input type="text" id="userName" name="userName" required>
+    </div>
+    <div>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+    </div>
+    <div>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+    </div>
+    <div>
+        <label for="reTypePassword">Retype Password:</label>
+        <input type="password" id="reTypePassword" name="reTypePassword" required>
+    </div>
+    <div>
+        <button type="submit">Register</button>
+    </div>
 </form>
+
+<p>Already have an account? <a href="login.jsp">Login here</a>.</p>
+
 </body>
 </html>
 

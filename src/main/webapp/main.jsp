@@ -11,6 +11,12 @@
     <title>Welcome - SDP</title>
 </head>
 <body>
-  <h1>Hi ${message}! Welcome to our website!</h1>
+
+<% if (request.getAttribute("messageUsername") != null) { %>
+<div style="color: red;">
+    <h1> Hi <%= request.getAttribute("messageUsername") %> ! Welcome to our website! </h1>
+</div>
+<% } %>
+
 </body>
 </html>

@@ -16,10 +16,7 @@
         <tr>
             <td>
                 <% if (request.getAttribute("message") != null) { %>
-                <h3 style="color: red">${message}</h3>
-                <% } %>
-                <% if (request.getAttribute("successMessage") != null) { %>
-                <h3 style="color: green">${successMessage}</h3>
+                <h3 style="color: red"><%= request.getAttribute("message") %></h3>
                 <% } %>
             </td>
             <td></td>
