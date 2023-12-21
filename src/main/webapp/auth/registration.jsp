@@ -35,27 +35,27 @@
                     <form method="post" action="register" class="register-form"
                           id="register-form">
                         <div class="form-group">
-                            <label for="name"><i
+                            <label for="first_name"><i
                                     class="zmdi zmdi-account material-icons-name"></i></label> <input
-                                type="text" name="name" id="name" placeholder="Your Name" />
+                                type="text" name="first_name" id="first_name" placeholder="First Name"/>
                         </div>
                         <div class="form-group">
-                            <label for="email"><i class="zmdi zmdi-email"></i></label> <input
-                                type="email" name="email" id="email" placeholder="Your Email" />
+                            <label for="last_name"><i class="zmdi zmdi-account material-icons-name"></i></label> <input
+                                type="text" name="last_name" id="last_name" placeholder="Last Name"/>
                         </div>
                         <div class="form-group">
-                            <label for="password"><i class="zmdi zmdi-lock"></i></label> <input
-                                type="password" name="password" id="password" placeholder="Password" />
+                            <label for="phone_number"><i class="zmdi zmdi-phone material-icons-name"></i></label>
+                            <input type="text" name="phone_number" id="phone_number"
+                                   placeholder="Phone Number"/>
                         </div>
                         <div class="form-group">
-                            <label for="reTypePassword"><i class="zmdi zmdi-lock-outline"></i></label>
-                            <input type="password" name="reTypePassword" id="reTypePassword"
-                                   placeholder="Repeat your password" />
+                            <label for="email"><i class="zmdi zmdi-email material-icons-name"></i></label>
+                            <input type="text" name="email" id="email"
+                                   placeholder="Email" />
                         </div>
                         <div class="form-group">
-                            <label for="contact"><i class="zmdi zmdi-lock-outline"></i></label>
-                            <input type="text" name="contact" id="contact"
-                                   placeholder="Contact no" />
+                            <label for="password"><i class="zmdi zmdi-lock material-icons-name"></i></label> <input
+                                type="password" name="password" id="password" placeholder="Password"/>
                         </div>
                         <div class="form-group">
                             <input type="checkbox" name="agree-term" id="agree-term"
@@ -86,7 +86,6 @@
 <!-- JS -->
 <script src="vendor/jquery/jquery.min.js"></script>
 <script src="js/main.js"></script>
-
 
 
 </body>
