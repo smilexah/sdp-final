@@ -240,8 +240,8 @@
     }
 %>
 <div class="section-2 wf-section">
-    <h1 class="heading">Welcome to Hotel Rajapaksha</h1>
-    <h3 class="heading-5">The Most Exquisite Hotel in Sri Lanka</h3>
+    <h1 class="heading">Welcome to Hotel SDU</h1>
+    <h3 class="heading-5">The Most Exquisite Hotel in Kazakhstan</h3>
     <div class="form-block-3 w-form">
         <form
                 id="wf-form-Booking-Form-Mobile"
@@ -251,37 +251,27 @@
                 action="addbooking"
                 aria-label="Booking Form Mobile"
         >
-            <label for="adults" class="field-label-14">adults</label
+            <label for="location" class="field-label-13">Location</label>
+            <input
+                    type="text"
+                    class="w-input"
+                    maxlength="256"
+                    name="location"
+                    placeholder="Алматы"
+                    id="location"
+                    required=""
+            />
+            <label for="cidate" class="field-label-12">check-in date</label>
+            <input
+                    type="date"
+                    class="w-input"
+                    maxlength="256"
+                    name="cidate"
+                    placeholder=""
+                    id="cidate"
+                    required=""/>
+            <label for="codate" class="field-label-11">check-out date</label
             ><input
-                type="number"
-                class="w-input"
-                maxlength="256"
-                name="adults"
-                placeholder=""
-                id="adults"
-                required=""
-                value="0"
-        /><label for="children" class="field-label-13">children</label
-        ><input
-                type="number"
-                class="w-input"
-                maxlength="256"
-                name="children"ұ
-                placeholder=""
-                id="children"
-                value="0"
-
-        /><label for="cidate" class="field-label-12">check-in date</label
-        ><input
-                type="date"
-                class="w-input"
-                maxlength="256"
-                name="cidate"
-                placeholder=""
-                id="cidate"
-                required=""
-        /><label for="codate" class="field-label-11">check-out date</label
-        ><input
                 type="date"
                 class="w-input"
                 maxlength="256"
@@ -314,75 +304,12 @@
         </div>
     </div>
     <div class="form-block-2 w-form">
-        <form
+        <div
                 id="wf-form-Booking-Form"
-                name="wf-form-Booking-Form"
                 data-name="Booking Form"
-                method="post"
                 class="form-2"
-                aria-label="Booking Form"
-                action="./addbooking"
         >
-            <label for="adults" class="field-label-10">Adults</label
-            ><label for="children" class="field-label-9">children</label
-        ><label for="cidate" class="field-label-8">Check-in date</label
-        ><label for="codate" class="field-label-7">check-out date</label
-        ><label for="name-2" class="field-label-6">.</label
-        ><input
-                type="number"
-                class="w-input"
-                maxlength="256"
-                name="adults"
-                placeholder=""
-                id="adults"
-                required=""
-                value="0"
-        /><input
-                type="number"
-                class="w-input"
-                maxlength="256"
-                name="children"
-                placeholder=""
-                id="children"
-                value="0"
-        /><input
-                type="date"
-                class="w-input"
-                maxlength="256"
-                name="cidate"
-                placeholder=""
-                id="cidate"
-                required=""
-        /><input
-                type="date"
-                class="w-input"
-                maxlength="256"
-                name="codate"
-                placeholder=""
-                id="codate"
-                required=""
-        /><input
-                type="submit"
-                value="Submit"
-                data-wait="Please wait..."
-                class="submit-button-2 w-button"
-        />
-        </form>
-        <div
-                class="w-form-done"
-                tabindex="-1"
-                role="region"
-                aria-label="Booking Form success"
-        >
-            <div>Thank you! Your submission has been received!</div>
-        </div>
-        <div
-                class="w-form-fail"
-                tabindex="-1"
-                role="region"
-                aria-label="Booking Form failure"
-        >
-            <div>Oops! Something went wrong while submitting the form.</div>
+            <label for="location" class="field-label-10"><a href="./booking.jsp">Book your Dream Hotel right now -></a></label>
         </div>
     </div>
 </div>

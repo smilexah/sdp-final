@@ -262,6 +262,11 @@ nav {
     color: var(--text-dark);
 }
 
+.form-group {
+    display: flex;
+    gap: 20px;
+}
+
 .reward__container {
     padding: 2rem;
     text-align: center;

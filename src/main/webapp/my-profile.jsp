@@ -3,12 +3,12 @@
 
     String urole = (String) session.getAttribute("LoggedInRole");
 
-    if ("customer".equals(urole)) {
+    if ("user".equals(urole)) {
 
     } else {
         out.println("<script type=\"text/javascript\">");
         out.println("alert('You are not allowed to access this customer only content!');");
-        out.println("location='sign-in.jsp';");
+        out.println("location='./auth/login.jsp';");
         out.println("</script>");
     }
 
@@ -65,28 +65,29 @@
         %>
         <%
             }
-            if (att.equals("customer")) {
-        %>    
+            if (att.equals("user")) {
+        %>
         <jsp:include page="user-header.jsp" />
         <%
         } else if (att.equals("admin")) {
-        %>        
+        %>
         <jsp:include page="admin-header.jsp" />
         <%
         } else {
-        %> 
+        %>
         <jsp:include page="common-header.jsp" />
         <%
             }
         %>
+
         <div class="section-6 wf-section">
             <h1 class="heading">MY&nbsp;Profile</h1>
         </div>
         <div class="section-13 wf-section">
             <h1 class="heading-12">My Details</h1>
             <p class="paragraph-4">
-                Name:&nbsp;<% out.println(request.getAttribute("fname")); %> <% out.println(request.getAttribute("lname")); %><br />Email: <% out.println(request.getAttribute("email")); %><br />Mobile No:
-                <% out.println(request.getAttribute("mobile")); %><br />‍
+                Name:&nbsp;<% out.println(request.getAttribute("first_name")); %> <% out.println(request.getAttribute("last_name")); %><br />Email: <% out.println(request.getAttribute("email")); %><br />Mobile No:
+                <% out.println(request.getAttribute("phone_number")); %><br />‍
             </p>
             <h1 class="heading-12">My Recent Bookings</h1>
         </div>

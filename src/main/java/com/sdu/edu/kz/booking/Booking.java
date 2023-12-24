@@ -50,4 +50,16 @@ public class Booking implements Observer, BookingPayment, BookingInterface {
     public void check(){
         makePayment(getPrice());
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public int getDays() {
+        return days;
+    }
+
+    public String getClient() {
+        return client;
+    }
 }

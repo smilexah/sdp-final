@@ -1,42 +1,31 @@
-<%-- 
-    Document   : user header
-    Created on : Jan 27, 2022, 1:47:52 AM
-    Author     : sayur
---%>
-
+<%@ page import="jakarta.servlet.http.HttpSession" %>
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
+
+<% HttpSession httpSession = request.getSession();
+    String userFirstName = (String) httpSession.getAttribute("userFirstName"); %>
+
 <!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>User Header</title>
+    <link rel="stylesheet" href="./css/booking_style.css">
     <style>
-        ul:last-child {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            background-color: #333;
-        }
-
-        li {
+        .dropdown {
             float: left;
+            overflow: hidden;
         }
 
-        li a, .dropbtn {
-            display: inline-block;
-            color: white;
-            text-align: center;
-            padding: 14px 16px;
-            text-decoration: none;
-        }
+        .dropdown .dropbtn {
+            border: none;
+            outline: none;
+            background-color: inherit;
+            font-family: inherit;
+            margin: 0;
 
-        li a:hover, .dropdown:hover .dropbtn {
-            background-color: red;
-        }
-
-        li.dropdown {
-            display: inline-block;
+            font-weight: 500;
+            color: var(--text-light);
+            transition: 0.3s;
         }
 
         .dropdown-content {
@@ -49,6 +38,7 @@
         }
 
         .dropdown-content a {
+            float: none;
             color: black;
             padding: 12px 16px;
             text-decoration: none;
@@ -57,7 +47,7 @@
         }
 
         .dropdown-content a:hover {
-            background-color: #f1f1f1;
+            background-color: #ddd;
         }
 
         .dropdown:hover .dropdown-content {
@@ -75,9 +65,9 @@
     <div class="nav__logo"><a href="./index.jsp">SDU Hotel</a></div>
     <ul class="nav__links">
         <li class="dropdown">
-            <a href="javascript:void(0)" class="dropbtn"><% if (request.getAttribute("userFirstName") != null) { %>
-                    <span> Hi, <%= request.getAttribute("userFirstName") %>!</span>
-                <% } %></a>
+            <a href="javascript:void(0)" class="dropbtn">Hi, <%
+                out.println(userFirstName); %>!
+            </a>
             <div class="dropdown-content">
                 <a href="./my-profile.jsp" class="zmdi zmdi-account material-icons-name">Account</a>
                 <a href="./main.jsp" class="zmdi zmdi-view-dashboard material-icons-name">My Bookings</a>

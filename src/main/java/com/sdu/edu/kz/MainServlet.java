@@ -14,11 +14,11 @@ public class MainServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        String username = (String) session.getAttribute("username");
+        String userFirstName = (String) session.getAttribute("userFirstName");
 
-        if (username != null) {
+        if (userFirstName != null) {
             response.setContentType("text/html;charset=UTF-8");
-            response.getWriter().println("<h1>Welcome, " + username + "!</h1>");
+            response.getWriter().println("<h1>Welcome, " + userFirstName + "!</h1>");
         } else {
             response.setContentType("text/html;charset=UTF-8");
             response.getWriter().println("<h1>User not found</h1>");

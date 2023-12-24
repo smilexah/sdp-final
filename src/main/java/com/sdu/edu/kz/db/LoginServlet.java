@@ -24,9 +24,10 @@ public class LoginServlet extends HttpServlet {
         if (authenticate(email, password)) {
             String userRole = getUserRole(email); // Implement this method to retrieve the user role from your database
             String userFirstName = getUserFirstName(email);
-            // Set the user's role in the session
+
             request.getSession().setAttribute("LoggedInRole", userRole);
             request.getSession().setAttribute("userFirstName", userFirstName);
+
             response.sendRedirect("/index.jsp");
 
         } else {
@@ -100,12 +101,12 @@ public class LoginServlet extends HttpServlet {
     }
 
     private String getUserFirstName(String email) {
-        String first_name = null;
+        String first_name = "";
 
         try (Connection connection = ConnectionDBProvider.getConnection()) {
             String sql = "SELECT first_name FROM users WHERE email = ?";
             try (PreparedStatement statement = connection.prepareStatement(sql)) {
-                statement.setString(1, first_name);
+                statement.setString(1, email);
                 ResultSet resultSet = statement.executeQuery();
 
                 if (resultSet.next()) {

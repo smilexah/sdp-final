@@ -60,7 +60,7 @@
 %>
 <%
     }
-    if (att.equals("customer")) {
+    if (att.equals("user")) {
 %>
 <jsp:include page="user-header.jsp"/>
 <%

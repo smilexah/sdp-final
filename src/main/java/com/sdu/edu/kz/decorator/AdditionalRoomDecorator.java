@@ -2,8 +2,8 @@ package com.sdu.edu.kz.decorator;
 
 import com.sdu.edu.kz.factory.Room;
 
-public class TransferDecorator extends BookingDecorator {
-    public TransferDecorator(Room room) {
+public class AdditionalRoomDecorator extends BookingDecorator {
+    public AdditionalRoomDecorator(Room room) {
         super(room);
     }
 

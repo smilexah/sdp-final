@@ -1,21 +1,48 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Muratbekuly Meyirjan
-  Date: 13/12/2023
-  Time: 18:22
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page import="com.sdu.edu.kz.adapter.CreditCardPayment" %>
 <html>
 <head>
     <title>Credit Card Payment</title>
+    <script>
+        function updateTotal() {
+            var total = 0;
+            // ... your total calculation logic ...
+
+            document.getElementById('totalPrice').innerText = '$' + total;
+
+            // Set the calculated total in the payment form
+            document.getElementById('amount').value = total;
+        }
+
+        // Add event listeners to update total whenever an option changes
+        window.onload = function() {
+            document.querySelectorAll('.modal input[type=checkbox]').forEach(function(checkbox) {
+                checkbox.addEventListener('change', updateTotal);
+            });
+        };
+    </script>
 </head>
 <body>
-<h2>Credit Card Payment Form</h2>
-<form action="creditCard" method="post">
-    <label for="amount">Enter Amount in KZT:</label>
-    <input type="text" id="amount" name="amount"><br><br>
-    <input type="submit" value="Pay">
-</form>
+
+<!-- Modal with Booking Options -->
+<div id="myModal" class="modal">
+    <!-- ... your modal content ... -->
+
+    <!-- Total Price Display -->
+    <h2>Total Price: <span id="totalPrice">$0</span></h2>
+
+    <!-- Button to Open Payment Form -->
+    <button onclick="document.getElementById('paymentForm').style.display='block'">Proceed to Payment</button>
+</div>
+
+<!-- Credit Card Payment Form -->
+<div id="paymentForm" style="display:none;">
+    <h2>Credit Card Payment Form</h2>
+    <form action="../succes.jsp" method="post">
+        <label for="amount">Enter Amount in KZT:</label>
+        <input type="text" id="amount" name="amount" readonly><br><br>
+        <input type="submit" value="Pay">
+    </form>
+</div>
+
 </body>
 </html>

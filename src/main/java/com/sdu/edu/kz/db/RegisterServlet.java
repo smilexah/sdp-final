@@ -34,7 +34,7 @@ public class RegisterServlet extends HttpServlet {
             }
 
             if (userPhoneNumberExists(phone_number, connection)) {
-                request.setAttribute("error", "Email already exists.");
+                request.setAttribute("error", "Phone number already exists.");
                 request.getRequestDispatcher("registration.jsp").forward(request, response);
                 return;
             }
